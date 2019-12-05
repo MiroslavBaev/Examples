@@ -1,0 +1,31 @@
+def build(bld):
+
+    prefix = bld.get_name_prefix(toolchain="llvm_xpic")
+
+    sources  = [
+        "Sources/NX51_Gpio.c",
+        "Sources/NX51_MMIO.c",
+        "Sources/NX51_Pio.c",
+        "Sources/NX51_Uart.c",
+        "Sources/NX51_XpicTimer.c",
+        "Sources/NX51_XpicVic.c",
+    ]
+
+    includes = [
+        "Includes"
+    ]
+
+    uses = [
+    ]
+
+    bld.stlib(
+        target          = 'nx51_xpic_hal',
+        name            = prefix + 'nx51_xpic_hal',
+        platform        = 'xpic2',
+        toolchain       = 'llvm_xpic',
+        source          = sources,
+        includes        = includes,
+        use             = uses,
+        export_includes = includes,
+        cflags          = '-Wno-invalid-source-encoding',
+    )

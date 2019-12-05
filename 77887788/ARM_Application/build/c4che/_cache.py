@@ -1,0 +1,11 @@
+BINDIR = 'C:\\users\\mbaev\\appdata\\local\\temp/bin'
+DEFINES_compile_debugrel = ['NDEBUG']
+DEFINES_compile_release = ['NDEBUG']
+HBOOT_APPFLASH_IMAGE = 'C:\\BuildTools\\waf\\waflib\\extras\\hboot_image_compiler\\netx90_app_iflash_image.py'
+HBOOT_APP_IMAGE = 'C:\\BuildTools\\waf\\waflib\\extras\\hboot_image_compiler\\netx90_app_image.py'
+HBOOT_IMAGE_COMPILER = 'C:\\BuildTools\\waf\\waflib\\extras\\hboot_image_compiler'
+LIBDIR = 'C:\\users\\mbaev\\appdata\\local\\temp/lib'
+PREFIX = 'C:\\users\\mbaev\\appdata\\local\\temp'
+PYTHON = 'C:\\BuildTools\\python\\2.7.11\\python.exe'
+SVN = 'C:\\Program Files\\TortoiseSVN\\bin\\svn.exe'
+use_custom_toolchain = False

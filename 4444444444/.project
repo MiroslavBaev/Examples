@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>4444444444</name>
+	<comment></comment>
+	<projects>
+		<project>ARM_Application</project>
+		<project>xPIC_Application</project>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+		<nature>com.hilscher.solutionmanager.SolutionNature</nature>
+	</natures>
+</projectDescription>

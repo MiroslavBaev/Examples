@@ -1,0 +1,28 @@
+from waflib import Scripting
+import os, shutil
+
+top = "."
+out = "build"
+
+REQUIRED_TOOLCHAINS = ["llvm_xpic"]
+
+def options(ctx):
+    ctx.load("hilscher_extensions")
+    ctx.autorecurse(mandatory = False)
+
+def configure(conf):
+    conf.load("hilscher_extensions")
+    conf.autorecurse(mandatory = False)
+
+def dist(bld):
+    pass
+
+def build(bld):
+    bld.SOLUTION_OUT_DIR = bld.path.make_node('../Output')
+    bld.autorecurse()
+
+def distclean(ctx):
+    Scripting.distclean(ctx)
+    SOLUTION_OUT_DIR = ctx.path.make_node('../Output').abspath();
+    if os.path.isdir(SOLUTION_OUT_DIR):
+        shutil.rmtree(SOLUTION_OUT_DIR)

@@ -1,0 +1,47 @@
+APPNAME          = "xPIC Application"
+VERSION_MAJOR    = 1
+VERSION_MINOR    = 0
+VERSION_BUILD    = 0
+VERSION_REVISION = 0
+
+VERSION             = "%u.%u.%u.%u" % (VERSION_MAJOR, VERSION_MINOR, VERSION_BUILD, VERSION_REVISION)
+
+
+def build(bld):
+
+    prefix = bld.get_name_prefix(toolchain="llvm_xpic")
+
+    netx_studio_sources  = [
+        "Sources/init_xpic.s",
+        "Sources/main.c",
+    ]
+    
+    includes = [
+        "Includes"
+    ]
+ 
+    uses = [
+        prefix + "nx51_xpic_hal"
+    ]
+    
+    bld.program(
+        target          = 'NX51_xPIC_intram',
+        name            = prefix + 'netx51_xpic_intram',
+        platform        = 'xpic2',
+        toolchain       = 'llvm_xpic',
+        source          = netx_studio_sources,
+        includes        = includes,
+        use             = uses,
+        linkerscript    = 'Linker/netX51_xpic_intram.ld',      
+    )
+    
+    
+    bld.xpic2bin(
+        bld.path.get_bld().make_node('NX51_xPIC_intram.elf'),
+        bld.path.get_bld().make_node('xpic_sections.o')
+    )
+    
+    bld.copyfile(
+        bld.path.get_bld().make_node('xpic_sections.o'),
+        bld.SOLUTION_OUT_DIR.make_node('/dist/netX52_xpic/xpic_sections.o')
+    )

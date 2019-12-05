@@ -1,0 +1,3 @@
+arm-none-eabi/4.5.2/netx10/DEBUG_ADAPTER=nxhx_onboard
+arm-none-eabi/4.5.2/netx10/TARGET_BOARD=nxhx10
+eclipse.preferences.version=1

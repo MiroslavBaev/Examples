@@ -1,0 +1,18 @@
+top = "."
+out = "build"
+
+
+def options(ctx):
+    ctx.load("hilscher_extensions")
+    ctx.autorecurse(mandatory = False)
+
+def configure(conf):
+    conf.env['SOLUTION_OUTPUT_PATH'] = conf.path.find_node("../Output").abspath();
+    conf.load("hilscher_extensions")
+    conf.autorecurse(mandatory = False)
+
+def dist(bld):
+    pass
+
+def build(bld):
+    bld.autorecurse()

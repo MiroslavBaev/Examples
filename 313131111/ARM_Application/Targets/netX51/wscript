@@ -1,0 +1,48 @@
+APPNAME             = "NXHX51"
+VERSION             = "1.0.0.0"
+REQUIRED_TOOLCHAINS = ["codesourcery"]
+
+
+def build(bld):
+    
+    netx_studio_sources = [
+        "Sources/main.c",
+        "Sources/mmio_config.c",
+    ]
+    
+    netx_studio_sources_arm = [
+        "Sources/init_netx51.S", 
+    ]  
+    
+    includes = [
+        "Includes",
+    ]                
+    
+    uses = [
+        "arm-none-eabi/4.5.2/application",
+    ]
+                 
+    defines = [
+        "CONFIG_MMIO_NXHX51",
+    ]
+    
+    
+        
+    bld.firmware(
+        target           = "NXHX51.nxf",
+        name             = "arm-none-eabi/4.5.2/netx51",
+        toolchain        = "codesourcery",
+        platform         = "netx51",
+        description      = APPNAME + " Firmware",
+        displaygroup     = "Firmware",
+        version          = VERSION,
+        source           = netx_studio_sources,
+        source_arm       = netx_studio_sources_arm,
+        includes         = includes,
+        defines          = defines,
+        use              = uses,
+        linkerscript     = ["Linker/netx51_sdram.ld",],
+        BOOTBLOCKERFLAGS = ["-ct", "netx51_52", "-s", "SPI_gen_10", "-d", "SD_MT48LC2M32B2-7IT"],
+        features         = ["libsused"],
+    )
+                

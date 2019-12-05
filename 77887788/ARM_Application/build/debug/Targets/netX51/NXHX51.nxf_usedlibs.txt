@@ -1,0 +1,9 @@
+Target:  NXHX51.nxf
+Version: V1.0.0.0
+
+Used Libraries
+==============
+
+arm-none-eabi/4.5.2
+-------------------
+libApplication.a V1.0.0.0 Application
