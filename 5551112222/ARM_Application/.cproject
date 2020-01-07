@@ -17,7 +17,7 @@
 					<folderInfo id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1126889110." name="/" resourcePath="">
 						<toolChain id="org.eclipse.cdt.build.core.prefbase.toolchain.1953574109" name="No ToolChain" resourceTypeBasedDiscovery="false" superClass="org.eclipse.cdt.build.core.prefbase.toolchain">
 							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="org.eclipse.cdt.build.core.prefbase.toolchain.1953574109.942467865" name=""/>
-							<builder id="com.hilscher.netx.cdt.core.builder.waf.2014301331" name="WAF Builder" superClass="com.hilscher.netx.cdt.core.builder.waf"/>
+							<builder id="com.hilscher.netx.cdt.core.builder.waf.2014301331" keepEnvironmentInBuildfile="false" name="WAF Builder" superClass="com.hilscher.netx.cdt.core.builder.waf"/>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1953813824" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.659468037" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.259913141" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
@@ -45,4 +45,5 @@
 		</scannerConfigBuildInfo>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope"/>
 </cproject>

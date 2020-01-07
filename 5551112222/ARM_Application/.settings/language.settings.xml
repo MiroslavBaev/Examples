@@ -3,7 +3,7 @@
 	<configuration id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1126889110" name="arm-none-eabi/4.5.2/netx51">
 		<extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
 			<provider copy-of="extension" id="com.hilscher.netx.cdt.core.WAFLanguageSettingsProvider"/>
-			<provider class="com.hilscher.netx.cdt.core.language.settings.CompilerBuiltinSpecsDetector" console="false" env-hash="-40000356446261" id="com.hilscher.netx.cdt.core.CompilerBuiltinSpecsDetector" keep-relative-paths="false" name="CDT Built-in Compiler Settings" parameter="&quot;${COMMAND}&quot; ${FLAGS} -E -P -v -dD &quot;${INPUTS}&quot;" prefer-non-shared="true">
+			<provider class="com.hilscher.netx.cdt.core.language.settings.CompilerBuiltinSpecsDetector" console="false" env-hash="55003148903066" id="com.hilscher.netx.cdt.core.CompilerBuiltinSpecsDetector" keep-relative-paths="false" name="CDT Built-in Compiler Settings" parameter="&quot;${COMMAND}&quot; ${FLAGS} -E -P -v -dD &quot;${INPUTS}&quot;" prefer-non-shared="true">
 				<language-scope id="org.eclipse.cdt.core.gcc"/>
 			</provider>
 			<provider class="org.eclipse.cdt.core.language.settings.providers.LanguageSettingsGenericProvider" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider" name="CDT User Setting Entries" prefer-non-shared="true" store-entries-with-project="true"/>
