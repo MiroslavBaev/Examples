@@ -1,0 +1,11 @@
+@startuml
+
+[*] -> Initialize
+Initialize --> CreateDataTypeObjects
+CreateDataTypeObjects -> CreateDataTypes
+CreateDataTypes --> CreateStaticOdObjects
+CreateStaticOdObjects -> CreateArrayObjects
+CreateArrayObjects --> Finish
+Finish -> [*]
+
+@enduml

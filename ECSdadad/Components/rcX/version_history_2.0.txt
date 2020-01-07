@@ -1,0 +1,322 @@
+V2.0.8.14 (03.05.2012)
+----------------------
+ Bugfix:
+  - CFI parallel flash driver cannot handle unaligned writes (e.g. writing 5 bytes into 16Bit flash)
+  - CFI parallel flash driver did not return flash geometry data
+  - CFI parallel flash driver causes crash when writing until the end of the last sector
+  - CFI parallel flash driver may erase an additional sector (next sector)
+  - Drv_PflEraseFlashDevice() did not do anything  
+  - Mid_FatNormalizeFilename() did not work with filenames without base name (e.g. ".a")
+    These files could not be deleted as the function returned "." as normalized filename
+  - GPIO driver cannot set / clear outpus in lined mode (netX100/500)
+  - GPIO driver does not enable IRQs if fIrq is set in RX_GPIO_SET_T
+  - GPIO Driver does not set Threshold / Capture value
+  - Ethernet Standard MAC early receive callback was not working
+  - Stack Size of Timer Task was not taken from RX_ENTERKERNEL_PARAM_T (minimum size is 355 DWORDs)
+
+Added:
+  - Security Memory Driver updated to support new netX10 definition of Zone 2 / 3
+  - RCX_FILE_GET_HEADER_MD5_REQ to query md5 of file header (NXF/NXO/NXD/NXB files)
+
+V2.0.8.12 (05.03.2012)
+---------------------
+Added:
+ - NXO module initialization code now supports LED re-assignment via tag list.
+
+Changed:
+ - Updated 2PortSwitch XC Code to V3.4.2.0 with new mandatory SNMP Counters
+
+Bugfix:
+ - Drv_PflEraseFlashDevice() did not do anything
+
+V2.0.8.11 (20.12.2011)
+---------------------
+Added:
+ - Workaround for external PHY's in standard ethernet MAC, that lose data
+   during power up sequence (e.g. Micrel KSZ8041NL)
+
+V2.0.8.10 (09.12.2011)
+---------------------
+Bugfix:
+ - Mid_FatGetDiskFree may return wrong free space for FAT_12 filesystems
+   This may result in a error during downloads via DPM/USB/Serial
+
+V2.0.8.9 (01.12.2011)
+---------------------
+Bugfix:
+ - FAT12 does not work using sector sizes that are not a multiple of 12 bits
+   ATTENTION: Previously FAT12 formatted disks that used sector sizes that were
+              not multiple of 12 bits, will need to be reformatted, as they are
+              not FAT conform.
+
+V2.0.8.8 (28.09.2011)
+---------------------
+ - HIF: Added mirroring of Handshake cells for hosts that don't support RDY signals
+ - Kernel: rX_QueSendPriorityPacket doesn't sends LIFO
+
+Added:
+ - Following IOCTL's have been added to Ethernet Driver:
+    * EDD_IOCTL_GET_PORT_MAUTYPE_REQ
+    * EDD_IOCTL_SET_PORT_MAUTYPE_REQ
+    * EDD_IOCTL_SET_PORT_MACADDR_REQ
+    * EDD_IOCTL_GET_PORT_INFO_REQ
+    * EDD_IOCTL_GET_PORT_STATUS_REQ
+
+V2.0.8.7 (21.07.2011)
+---------------------
+  - Exception handlers (DAB, PAB, UND) provided wrong exception frame
+  - Exception handlers may crash depending on the context and registered exception handlers
+
+Changed:
+  - Removed User Exception handlers (rX_CpuExptGet / -SetUserVector) and renamed
+    system exception handlers (rX_CpuExptGet / -SetSystemVector to
+    rX_CpuGet / -SetExceptionVector)
+
+V2.0.8.6 (29.06.2011)
+---------------------
+Added:
+ - Support for Numonyx M45PE16 serial flash
+
+V2.0.8.5 (29.03.2011)
+---------------------
+ Bugfix:
+  - Filedownload requests were always redirected to XFER_TYPE_MODULE for files
+    with extension .NXF on a device with class = CIFX
+
+V2.0.8.4 (14.02.2011)
+---------------------
+ Bugfix:
+  - Deleting Interrupts running in Task Mode may crash malloc/memfree (0012516)
+
+V2.0.8.3 (14.07.2010)
+---------------------
+ Bugfix:
+  - CDC Driver will stall communication if host sends a zero byte packet
+
+V2.0.8.2 (09.07.2010)
+---------------------
+ Updated:
+  - rX_TagLists.h updated to include new Marshaller tags.
+
+V2.0.8.1 (22.06.2010)
+---------------------
+ Added:
+  - TLR_Types.h has been updated to provide the __PACKED_PRE and __PACKED_POST definitions for compatibility with (older) LOMs.
+
+V2.0.8.0 (05.05.2010)
+---------------------
+ Bugfix:
+  - Timer interrupts may be lost on netX50 when multiple hardware timers are used
+    When using custom IRQ clearing code for the GPIO module the write to
+    NETX_CNTR_IRQ_RAW / NETX_GPIO_IRQ_RAW must be replaced by a call to
+    netX50ConfirmGpioIrq
+
+    Example: netX50ConfirmGpioIrq(NETX_CNTR_IRQ_RAW, MSK_NETX_CNTR_IRQ_RAW_cnt2);
+
+  - Promiscious mode may be active after EDD initialization
+  - netX50: Security Memory readout may take longer if netX system time is modified
+  - Drv_SflWriteFlash: Writing of partial data inside a flash page results in
+    corrupted data in this page
+
+ Added:
+  - Bus synchronous support functions into HIF driver
+  - CFI compliant parallel flash support. This only includes raw access to flash
+    sectors (read/write/erase), but not filesystem. Call HalPflsInitialize_CFI
+    for using this driver
+
+ Updated:
+  - netX50: Exported Variable g_ulDrvSpiOpenCnt in Drv_Spi to allow interrupt
+    sharing for the two different SPI busses
+  - rcX_User.h now uses fixed width data types defined in ISO C99 (stdint.h)
+
+V2.0.7.0 (15.02.2010)
+---------------------
+ Bugfix:
+  - Firmwares without any filesystem did not startup, when using DPM/HIF (MidSysDPMInit failed)
+  - RCX_CONTROL_BLOCK_REQ and RCX_GET_COMMON_STATE_REQ did not work, when being sent via channel through DPM
+    with ulDest = 0x20
+
+V2.0.6.0 (28.01.2010)
+---------------------
+ Updated:
+  - Standard Ethernet MAC and 2 Port Switch updated to HAL 3.1.0.0 (RPU and TPU are now the same for 2Port and Standard MAC)
+ Bugfix:
+  - If PHY reset fails(e.g. invalid MDIO address), rcX stuck in an endless startup.
+    Changed so that after 100ms the Reset is aborted and HAL_PHY_ACCESS_ERROR is returned
+  - Uart may cause framing errors when used with Baudrates between 9600 / 19200 due to clock divider in UART causing a
+    baudrate deviance of approx 0,66%
+  - Mid_FatDelete() blocks if directory contains more than one cluster
+  - Mid_FatReadFile() read past end of file
+  - Drv_XcResetXc updated (fixes problems with XC startup on some microcodes)
+
+V2.0.5.0 (16.12.2009)
+---------------------
+ Bugfix:
+  - USB CDC Emulation did not answer correctly to string requests during enumeration phase.
+  - Drv_MMCMount was unable to mount SD/MMC cards with an internal sector size != 512 (usually cards bigger than 1GB).
+    MidFatInitialize returned error MID_FAT_READ_ERROR in this case
+  - MMC Driver : CSD Parameters for read/write access times were evaluated wrong. This resulted in read/write errors on some cards
+  - 2Port Switch may call application's send confirmation callback twice, even
+    if fMultipleCnf is not set
+  - XC units are now completely reset if Drv_XcResetXc is called for RX_TYPE_XC_XPEC, as it is not possible to
+    reset single subunits. Only complete XC reset (XPEC, RPU/TPU) works under all circumstances. XC Reset modified
+    according to latest SimpleLoader Routines from HAL-Examples.
+  - RCX_GET_EXTENDED_STATE_REQ now returns correct data
+
+  Added:
+  - Drv_Urt now supports USB cdc emulation using the internal USB core.
+  - Drv_Urt has a new function "Drv_UrtGetLastError" which allows readout of the last happened error. This
+    function should be called in the Error Notification callback to check the occured error.
+
+  Added: (03.11.2009)
+  - TLR_ExtDevStat supports creating extended device status fields at DPM
+  - DMA functions: Drv_HifSetupDMA, Drv_HifEnableDMA, Drv_HifEnableDMACallback, Drv_HifDisableDMACallback, Drv_HifSetComCosDMA
+  - Add DeviceIdNumber to DPM
+  - Update boottokens
+  - Support for auto-detecting M25PE80, M45PE40, M45PE80
+
+  Changed:
+  - License Update now accepts manufacturer specific license files
+
+V2.0.4.6 (08.10.2009)
+---------------------
+  Bugfix:
+  - Drv_Pio should is now able to handle multiple PIO_SETS independently
+
+V2.0.4.5 (17.12.2008)
+---------------------
+ Bugfix:
+  - incorrect FAT handling results in Volume full after downloading file several times
+
+V2.0.4.4 (26.11.2008)
+---------------------
+ Added:
+  - SD/MMC Driver module for use with MidFat module
+  - Performance measurement features
+  - new packets for system channel blocks and communication control
+
+ Bugfix:
+  - DrvVolGetEntry always returned RX_OK (even if given volume was not available)
+  - Mid_FatFormat did not format correctly in seldom cases (usually DrvRdk),
+    if previously found FAT has been corrupted during system start
+
+ Changes:
+  - Internal changes in RX_SYSTEM task (MidSys module)
+
+V2.0.4.3 (07.08.2008)
+---------------------
+ Added:
+  - Crypto flash License update (Download mode)
+  - Function to query netX Chip type (rX_DevGetChiptype)
+  - iniBatch (to startup stacks without support for DBM files)
+
+ Changed:
+  - Internal Structure of XC Driver changed, to allow License update
+  - Adopted Crypto Flash driver, to changes in XC driver
+  - PHY driver changed to support Initializing the PHY's in different configurations (e.g. no Auto-Neg, no AutoMDIX)
+  - 2Port Switch and Standard Ethernet MAC do not re-initialize the PHY anymore. The previously set parameters from DrvPhy are used.
+
+ Bugfix:
+  - Disabling System Status LEDs independently did not work
+  - Internal miscalculation of ethernet frame buffer for Standard Ethernet MAC
+    on Port 1
+  - Licenseinformation not always correctly read (MMU/Caching errors during DMA of XPEC)
+  - writing of Zone3 did not work (did write non-inverted data, while reading delivers inverted data)
+  - Read/Write of crypto flash zones did not work correctly.
+
+  * netX50
+   - Only one SPI interface was usable, due to the interrupt being shared between SPI0/SPI1
+
+V2.0.4.2 (29.04.2008)
+---------------------
+ Changed:
+  *netX100/500
+    - Xpec Reset changed to reset DMA controller earlier (adopted to latest simple loader from HALs)
+  * Doing a system start via DPM/Packet now clears the SYSSTA Leds before executing the reset
+
+ Bugfix:
+  * Some XC microcodes could result in total netX crash after a XCReset. All microcodes delivered with rcX (Cryptoflash, Ethernet)
+    were checked for this behaviour.
+
+B2.0.4.2_2008_04_07
+-------------------
+ Added:
+  - Packet to set MAC address via DPM (for non-crypto flash operation)
+  - Startup speed improved (fast startup preparation)
+
+B2.0.4.2_2008_03_20
+-------------------
+ Added:
+  - Function Mid_DbmGetDatabaseProperty (Database module)
+
+B2.0.4.2_2008_03_18
+-------------------
+ Changed:
+  - Internal API change in Drv_Edd to allow send confirmation suppression by XPEC (if supported by microcode)
+  - RX_SYSTEM task's queues can now be adjusted in size through global variable (for lower memory usage)
+
+V2.0.4.1 (14.03.2008)
+---------------------
+ Bugfix:
+  - SystemStart via DPM caused XPEC to be enabled instead of disabled. This could
+    result in a system crash, or instable system behaviour.
+  - 2Port Switch. Explicitely sending on Port1 does not work.
+
+V2.0.4.0 (04.03.2008)
+---------------------
+ Bugfix:
+  - Hilfileheader.h deliviered was an old version.
+  - Drv_SysTimeCompareTimestamps() illegally returned a>b if both stamps are equal
+  - Cryptoflash: Reading of zone1 delivered wrong data
+
+ Changed:
+  *netX50
+    - MMIO_CONFIG_T Structure defined in mmio_config.h
+
+B2.0.4.0_2008_02_25
+-------------------
+ Bugfix:
+  - 2Port Switch did not work. Internal misinterpretation of frames and their assigned callbacks
+
+B2.0.4.0_2008_02_14
+-------------------
+ Bugfix netX100/500:
+  - Drv_Edd did not work on xPEC0, when using Standard Ethernet/2 Port switch. Send/Free Functions
+    were always returning EDD_E_INVALID_BUFFER due to an internal frame pointer miscalculation.
+
+B2.0.4.0_2008_02_11
+-------------------
+ Bugfix:
+  - Opening a DBM file with the same name in different directories did not work
+  - HIF Driver now supports writing the protocol class, etc. to DPM (Function : Drv_HifSetChannelInfoData)
+
+B2.0.4.0_2008_01_23
+-------------------
+ Bugfix:
+  - netX50 XC_Reset could result in endless loop
+
+B2.0.4.0_2008_01_11
+-------------------
+ Bugfix:
+  - Writing a DBM file did unmount the volume it was located on.
+
+B2.0.4.0_2007_12_06_1100
+------------------------
+ Bugfix:
+  - 2Port Switch
+     * Sending frames was broken
+
+B2.0.4.0_2007_12_05_1415
+------------------------
+Bugfix:
+ - 2Port Switch caused Access violation on receive frames
+
+Changed:
+ - Ethernet / 2Port Switch now uses different RPU/TPU microcodes. Use the following definitions
+    * Ethernet     : XC_CODE_ETH_STD_TPU / XC_CODE_ETH_STD_RPU
+    * 2Port Switch : XC_CODE_ETH_2PORT_SWITCH_TPU / XC_CODE_ETH_2PORT_SWITCH_RPU
+
+
+B2.0.4.0_2007_10_30_1045
+------------------------
+ Initial beta version with netX50 support

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>ARM_Application</name>
+	<name>fffff</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -23,6 +23,6 @@
 		<nature>org.eclipse.cdt.core.cnature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
-		<nature>com.hilscher.solutionmanager.SolutionChildNature</nature>
+		<nature>com.hilscher.solutionmanager.SolutionNature</nature>
 	</natures>
 </projectDescription>

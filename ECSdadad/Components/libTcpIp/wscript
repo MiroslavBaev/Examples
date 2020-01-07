@@ -1,0 +1,70 @@
+def build(bld):
+
+    bld.externalcomponent(target          = "tcpip",
+                          path            = "Lib/arm-hitex-elf/4.0.3/rcX_V2.0",
+                          name            = "arm-hitex-elf/4.0.3/rcX_V2.0/tcpip",
+                          description     = "TcpIp task library for rcX V2.0, compiled in thumb mode",
+                          displaygroup    = "TcpIp task library",
+                          version         = "2.1.24.0",
+                          export_includes = ["Includes", ],
+                         )
+
+    bld.externalcomponent(target          = "tcpip",
+                          path            = "Lib/arm-hitex-elf/4.0.3/rcX_V2.0/arm",
+                          name            = "arm-hitex-elf/4.0.3/rcX_V2.0/arm/tcpip",
+                          description     = "TcpIp task library for rcX V2.0, compiled in arm mode",
+                          displaygroup    = "TcpIp task library",
+                          version         = "2.1.24.0",
+                          export_includes = ["Includes", ],
+                         )
+
+    bld.externalcomponent(target          = "tcpip",
+                          path            = "Lib/arm-hitex-elf/4.0.3/rcX_V2.0/lue",
+                          name            = "arm-hitex-elf/4.0.3/rcX_V2.0/lue/tcpip",
+                          description     = "TcpIp task library for rcX V2.0, OEM",
+                          displaygroup    = "TcpIp task library OEM",
+                          version         = "2.1.24.0",
+                          export_includes = ["Includes", ],
+                         )
+
+    bld.externalcomponent(target          = "tcpip",
+                          path            = "Lib/arm-none-eabi/4.5.2/rcX_V2.1",
+                          name            = "arm-none-eabi/4.5.2/rcX_V2.1/tcpip",
+                          description     = "TcpIp task library for rcX V2.1, compiled in thumb mode",
+                          displaygroup    = "TcpIp task library",
+                          version         = "2.1.24.0",
+                          export_includes = ["Includes", ],
+                         )
+
+    bld.externalcomponent(target          = "tcpip",
+                          path            = "Lib/arm-none-eabi/4.5.2/rcX_V2.1/arm",
+                          name            = "arm-none-eabi/4.5.2/rcX_V2.1/arm/tcpip",
+                          description     = "TcpIp task library for rcX V2.1, compiled in arm mode",
+                          displaygroup    = "TcpIp task library",
+                          version         = "2.1.24.0",
+                          export_includes = ["Includes", ],
+                         )
+
+    bld.externalcomponent(target          = "tcpip",
+                          path            = "Lib/arm-none-eabi/4.5.2/rcX_V2.1/lue",
+                          name            = "arm-none-eabi/4.5.2/rcX_V2.1/lue/tcpip",
+                          description     = "TcpIp task library for rcX V2.1, OEM",
+                          displaygroup    = "TcpIp task library OEM",
+                          version         = "2.1.24.0",
+                          export_includes = ["Includes", ],
+                         )
+
+    bld(name            = "arm-hitex-elf/4.0.3/rcX_V2.0/tcpip_sdk",
+        SDK             = True,
+        description     = "TcpIp task library SDK component for rcX V2.0",
+        version         = "2.1.24.0",
+        export_includes = ["Includes", ],
+       )
+
+    bld(name            = "arm-none-eabi/4.5.2/rcX_V2.1/tcpip_sdk",
+        SDK             = True,
+        description     = "TcpIp task library SDK component for rcX V2.1",
+        version         = "2.1.24.0",
+        export_includes = ["Includes", ],
+       )
+

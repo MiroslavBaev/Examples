@@ -1,0 +1,23 @@
+top = "."
+out = "build"
+
+def options(ctx):
+    try:
+        ctx.load("hilscher_extensions")
+    except:
+        ctx.load("hilscher_netx hilscher_firmware hilscher_extras", tooldir="Waf")
+    ctx.autorecurse(mandatory = False)
+
+def configure(conf):
+    try:
+        conf.load("hilscher_extensions")
+    except:            
+        conf.load("hilscher_netx hilscher_firmware hilscher_extras", tooldir="Waf")
+    conf.autorecurse(mandatory = False)
+
+
+def dist(bld):
+    pass
+
+def build(bld):
+    bld.autorecurse() 

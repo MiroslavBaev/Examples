@@ -1,0 +1,80 @@
+# project  configured on Tue Jan 07 13:29:05 2020 by
+# waf 1.6.11 (abi 98, python 20703f0 on win32)
+# using C:\BuildTools\waf\dist\waf-1.6.11.exe configure build --conditions=debug
+#
+----------------------------------------
+Setting top to
+C:\Users\MBaev\git\Examples\ddadada
+----------------------------------------
+Setting out to
+C:\Users\MBaev\git\Examples\ddadada\build
+----------------------------------------
+Hilscher Waf version
+1.10.0.2
+----------------------------------------
+Checking for waf version in 1.6.11-1.7.0
+ok
+----------------------------------------
+Checking for program patch
+not found
+find program=['patch'] paths=['C:\\BuildTools\\python\\2.7.11\\', 'C:\\BuildTools\\mingw\\4.9.3\\bin', 'C:/Program Files/Java/jre1.8.0_181/bin/server', 'C:/Program Files/Java/jre1.8.0_181/bin', 'C:/Program Files/Java/jre1.8.0_181/lib/amd64', 'C:\\Program Files\\Java\\jre1.8.0_181', 'C:\\Program Files\\Java\\jre1.8.0_181\\bin', 'C:\\Python27', 'C:\\WINDOWS\\system32', '', 'D:\\Eclipse\\IDEs\\Neon', ''] var='PATCH' -> None
+from C:\Users\MBaev\git\Examples\ddadada: Could not find the program patch
+----------------------------------------
+Checking for program svn
+not found
+find program=['svn'] paths=['C:\\BuildTools\\python\\2.7.11\\', 'C:\\BuildTools\\mingw\\4.9.3\\bin', 'C:/Program Files/Java/jre1.8.0_181/bin/server', 'C:/Program Files/Java/jre1.8.0_181/bin', 'C:/Program Files/Java/jre1.8.0_181/lib/amd64', 'C:\\Program Files\\Java\\jre1.8.0_181', 'C:\\Program Files\\Java\\jre1.8.0_181\\bin', 'C:\\Python27', 'C:\\WINDOWS\\system32', '', 'D:\\Eclipse\\IDEs\\Neon', ''] var='SVN' -> None
+from C:\Users\MBaev\git\Examples\ddadada: Could not find the program svn
+----------------------------------------
+Checking for program python
+C:\BuildTools\python\2.7.11\python.exe
+find program=['python'] paths=['C:\\BuildTools\\python\\2.7.11\\', 'C:\\BuildTools\\mingw\\4.9.3\\bin', 'C:/Program Files/Java/jre1.8.0_181/bin/server', 'C:/Program Files/Java/jre1.8.0_181/bin', 'C:/Program Files/Java/jre1.8.0_181/lib/amd64', 'C:\\Program Files\\Java\\jre1.8.0_181', 'C:\\Program Files\\Java\\jre1.8.0_181\\bin', 'C:\\Python27', 'C:\\WINDOWS\\system32', '', 'D:\\Eclipse\\IDEs\\Neon', ''] var='PYTHON' -> 'C:\\BuildTools\\python\\2.7.11\\python.exe'
+----------------------------------------
+Checking for hboot image compiler
+C:\BuildTools\waf\waflib\extras\hboot_image_compiler
+-------------------------------------------
+Checking for app intflash image update tool
+C:\BuildTools\waf\waflib\extras\hboot_image_compiler\netx90_app_iflash_image.py
+-------------------------------------------
+Checking for app image update tool
+C:\BuildTools\waf\waflib\extras\hboot_image_compiler\netx90_app_image.py
+-------------------------------------------
+Checking for program arm-none-eabi-ar
+C:\BuildTools\arm-none-eabi-gcc\4.9.3\bin\arm-none-eabi-ar.exe
+find program=['arm-none-eabi-ar'] paths=['C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin'] var='AR' -> 'C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin\\arm-none-eabi-ar.exe'
+-------------------------------------------
+Checking for program arm-none-eabi-readelf
+C:\BuildTools\arm-none-eabi-gcc\4.9.3\bin\arm-none-eabi-readelf.exe
+find program=['arm-none-eabi-readelf'] paths=['C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin'] var='READELF' -> 'C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin\\arm-none-eabi-readelf.exe'
+-------------------------------------------
+Checking for program arm-none-eabi-objdump
+C:\BuildTools\arm-none-eabi-gcc\4.9.3\bin\arm-none-eabi-objdump.exe
+find program=['arm-none-eabi-objdump'] paths=['C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin'] var='OBJDUMP' -> 'C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin\\arm-none-eabi-objdump.exe'
+-------------------------------------------
+Checking for program arm-none-eabi-objcopy
+C:\BuildTools\arm-none-eabi-gcc\4.9.3\bin\arm-none-eabi-objcopy.exe
+find program=['arm-none-eabi-objcopy'] paths=['C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin'] var='OBJCOPY' -> 'C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin\\arm-none-eabi-objcopy.exe'
+-------------------------------------------
+Checking for program arm-none-eabi-strip
+C:\BuildTools\arm-none-eabi-gcc\4.9.3\bin\arm-none-eabi-strip.exe
+find program=['arm-none-eabi-strip'] paths=['C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin'] var='STRIP' -> 'C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin\\arm-none-eabi-strip.exe'
+-------------------------------------------
+Checking for program arm-none-eabi-nm
+C:\BuildTools\arm-none-eabi-gcc\4.9.3\bin\arm-none-eabi-nm.exe
+find program=['arm-none-eabi-nm'] paths=['C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin'] var='NM' -> 'C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin\\arm-none-eabi-nm.exe'
+-------------------------------------------
+Checking for program arm-none-eabi-gcc
+C:\BuildTools\arm-none-eabi-gcc\4.9.3\bin\arm-none-eabi-gcc.exe
+find program=['arm-none-eabi-gcc'] paths=['C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin'] var='CC' -> 'C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin\\arm-none-eabi-gcc.exe'
+-------------------------------------------
+Checking for program arm-none-eabi-g++
+C:\BuildTools\arm-none-eabi-gcc\4.9.3\bin\arm-none-eabi-g++.exe
+find program=['arm-none-eabi-g++'] paths=['C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin'] var='CXX' -> 'C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin\\arm-none-eabi-g++.exe'
+['C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin\\arm-none-eabi-gcc.exe', '-dumpversion']
+out: 4.9.3
+
+['C:\\BuildTools\\arm-none-eabi-gcc\\4.9.3\\bin\\arm-none-eabi-gcc.exe', '-dumpmachine']
+out: arm-none-eabi
+
+-------------------------------------------
+Toolchain 'gccarmemb'
+gcc 4.9.3

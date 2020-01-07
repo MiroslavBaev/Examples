@@ -1,0 +1,54 @@
+APPNAME          = "ExampleTask1"
+
+VERSION_MAJOR    = 1
+VERSION_MINOR    = 22
+VERSION_BUILD    = 0
+VERSION_REVISION = 0
+
+VERSION = '%u.%u.%u.%u' % (VERSION_MAJOR, VERSION_MINOR, VERSION_BUILD, VERSION_REVISION)
+
+
+def build(bld):
+  toolchain   = "codesourcery"
+  
+  comp_prefix = bld.get_name_prefix(toolchain=toolchain)
+
+  sources = ["Sources/ExampleTask1_Body.c",
+             "Sources/ExampleTask1_EscCaller.c",
+             "Sources/ExampleTask1_Functions.c",
+             "Sources/ExampleTask1_ObjectCreator.c",
+             "Sources/ExampleTask1_ObjectDictionary.c",
+             "Sources/ExampleTask1_Process.c",
+             "Sources/ExampleTask1_Resources.c",
+             "Sources/ExampleTask1_SiiProvider.c",
+             "Sources/ExampleTask1_TaskInfo.c",
+              ]
+  
+  includes = ["./Includes/",
+              ]
+  
+  defines = ["VERSION_MAJOR    = %u" % VERSION_MAJOR,
+             "VERSION_MINOR    = %u" % VERSION_MINOR,
+             "RX_COMPILE_CPU_INDEPENDENT",
+             ]
+
+  bld.stlib  ( name            = comp_prefix + "rcX_V2.1/" + APPNAME,
+               target          = APPNAME,
+               description     = APPNAME,
+               displaygroup    = "Libraries",
+               platform        = "netx",
+               toolchain       = toolchain, 
+               source          = sources,
+               includes        = includes,
+               defines         = defines,
+               export_includes = includes,
+               use             = [ comp_prefix + "rcX_V2.1/rcx",
+                                   comp_prefix + "rcX_V2.1/ecs_sdk",
+                                   comp_prefix + "rcX_V2.1/ecs_netx51_sdk",
+                                 ]
+              )
+    
+  bld.sdkcomponent( name = comp_prefix + APPNAME + "_sdk",
+                    includes = list( includes ),
+                    export_includes = list( includes ),
+                    version = VERSION)

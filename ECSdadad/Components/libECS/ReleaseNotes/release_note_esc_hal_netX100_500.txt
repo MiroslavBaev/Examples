@@ -1,0 +1,99 @@
+EtherCAT Slave HAL
+
+Hardware platform:
+NXHX500-RE (EtherCAT Slave on XC channel 0/1/3)
+NXIO (EtherCAT Slave on XC channel 0/1/3)
+
+Version  Name  Date       Revision History
+0.900    AO    -          created
+0.901    AO    -          several small bug fixes
+0.902    SB    -          fix of physical read/write to sync manager protected area
+0.903    SB    -          Corrected DC Control Loop when using 64Bit DC (see comments in Esc_Dc.c)
+1.0.0.0  AO    24.02.2009 Initial release for Subversion and NXHX-Board
+                          Change: it it not possible to disable DC functionality anymore
+                          Bugfix: Corrected DC Control Loop for re-sync
+                          Change: DC Control Loop and DC reset processed in xPEC instead on ARM
+                          Bugfix: Corrected DC Diff value calculation in case of wrap-around between global and local time
+                          Added: EEPROM content increased, so master does not need xml to get slave running
+                          Changed: increasing of PDO size to 464 bytes overall
+                          Added: PDO size adjustable due DIP switch settings during power-up
+                          Changed: BUILD to 6
+                          Changed: Sync signal length from 256 to 1 µs
+                          Changed: SII CRC to 0x88A4 (disabled)
+                          Changed: ESI (Product code, Second VendorID)
+                          successfully tested with Ecat conformance tool release V1.0.0.17
+1.2.0.0  AO    15.04.2010 Changed: BUILD to 7
+                          Changed: NextSync0/1SystemTimeNs now updated in runtime
+                          Changed: Previous Errors not counted anymore
+                          Changed: Feature register updated to actual specification
+                          Bugfix: ESC hangs up after link down in case of high net load
+                          Changed: some changes in project structure
+                          Bugfix: FMMU 1 Configuration not invalid after Restart by EtherCAT Master und SyncManager Disable by AL
+                          Bugfix: Register Impulse Length 0x982..0x983 changed from writable to read-only
+                          Successfully tested with Ecat conformance tool release V1.20.0.0
+                          Added: DL_CONTROL and DL_STATUS readable via PDI function Esc_ReadReg
+1.3.0.0  AO    09.07.2010 Changed: BUILD to 8
+                          Bugfix: SrcMac[1] only set in processing direction if DlCtrl.EcatOnly==1 (instead in both directions)
+                          Bugfix: Non Ecat Frames only destroyed in processing direction of DlCtrl.EcatOnly==1 (instead in both directions)
+                          Bugfix: Closed port in mode "AutoClose" opens loop after frame with valid CRC is received
+                          Bugfix: Handling of circulating frames changed (depends on Loop Closed instead of No Link)
+                          Changed: "hal_resources_defines.h" modified to avoid warnings during compilation
+                          Changed: Clarification of DC modes "Synchronous with SYNC0 Event" and "Synchronous with SYNC1 Event"
+1.4.0.0  AO    13.09.2010 Changed: BUILD to 9
+                          Changed: DC PLL adjustment range extended from +/-150ppm to +/-750ppm
+                          Added: PHY stati mapped into register ESCF_FLASH_FREQ_OF_LINK_ACT_TEMP (for generation of Link/Act LEDs manually on host side) 
+                          Added: Sync pins (xm3.io0/1) and ADC controllable by ARM
+1.4.1.0  AO    19.10.2010 Changed: BUILD to 10
+                          Changed: Possibility to initialize without DC functionality to get XC port 3 free for user's stuff
+1.4.2.0  AO    19.01.2011 Correct entries in EtherCAT feature register
+1.4.3.0  AO    25.03.2011 Changed: Build to 11
+                          Bugfix: IP/UDP header detection in forwarding direction
+                          Bugfix: "esc_irq_lock" never locked interrupts
+1.4.4.0  AO    01.08.2011 Changed: Build to 12
+                          Added: Variable Mailbox size supported
+                          Added: extended Esc_ReadReg to read type, revision, build, FMMU number, SyncMan number, RAM size, features supported, port descriptor
+                          Bugfix: Esc_SetSyncManDisByAl did not reset sync manager on disable
+                          Changed: Simplified handling of Sync Manager configuration in Esc_FmmuSmConfigControl.c
+                          Bugfix: Corrected code sequence in Esc_SmReWriteTxMailbox due to Bugfix in Esc_SetSyncManDisByAl
+                          Added: 780 byte mailbox configuration with 32 Byte PDO each direction
+                          Added: DC PI Controller parameters writable by Host
+1.5.0.0  AO    02.11.2011 Changed: Build to 13
+                          Changed: Default DC Control algorithm has now same behavior as Beckhoff ASICs have
+                                   Please Note:
+                                   It is still possible to switch on Hilscher specific PI-based DC control algorithm of former HAL versions via HAL function "Esc_Initialize"
+                                   The Hilscher specific PI-based DC Control algorithm introduces synchronization jitter in case of netX is reference clock and controlled by EtherCAT Master
+                          Added: "Esc_Initialize" has additional parameter to select DC Control Algorithm
+1.5.1.0  AO    30.11.2011 Changed in main.c: No reload of "Configured Station Alias" when SII Reload requested (shall always be done via PowerUp)
+                          Added in ESI (xml): set for all RxPDO and TxPDO the attribute mandatory=1
+1.5.2.0  AO    27.04.2012 Changed: Build to 14
+                          Bugfix: No repair of corrupt frames in very rare cases of MII.RxDv goes down for a few MII.RxClk cycles
+                          Added:  AL_STATUS bit 5 writable to support "Explicit Device Identification" via AL_STATUS
+1.5.3.0  AO    22.08.2012 Changed: Build to 15
+                          Bugfix: Receive time stamping in case of processing via OUT port (f.e. when node is last one in line but connected to OUT port)
+1.5.4.0  IO    06.11.2012 Changed: Build to 16
+                          Bugfix: wrong calculation of SysTime difference when master_clock wrapped
+1.5.5.0  IO    16.11.2012 Including string.h for memset declaration
+                          Changed: Build to 17
+                          Bugfix: WKC setting to 1 in case of SM3 not written
+                          Added: support of NXHX500ETM_R02/NXHX500ETM_R03 Evaboard
+                          1.6.0.0  BI    13.11.2014 Changed: Refactoring of data types in HAL API
+                          Changed: Reworked example application
+1.7.0.0  AO    05.02.2015 Changed: Build to 20
+                          Removed: PDI Watchdog functionality
+                          Removed: Hilscher specific PI-based DC control algorithm
+                          Bugfix: Pos++ in case of APRW and BRW commands (was not done in older version)
+                          Bugfix: ARMW: if Position Bit15 set then Command was ignored instead of writing 
+                          Added: ESC_EVENT_MSK Register shadowed
+                          Added: FMMU and SyncManager Configuration Registers shadowed
+                          Bugfix: Ethernet frame corruption when accessing physical register areas 0xa00..0xfff
+                          Changed: Register 0x990 ("System time of next SYNC0 pulse in ns") and Register 0x998 ("System time of next SYNC1 pulse in ns") latched altogether when detecting read access at register area 0x980..0x9A7; Earlier ESC Builds latch both System times individually when detect read access to register address 0x990/0x998
+                          Bugfix: Ethernet frame reception errors in case of Ethernet frame is VLAN-Tagged or with IP/UDP header in connection with large Ethernet clock drifts
+                          Bugfix: Reset value of Station Address (Address 0x0010) changed from 0xdead to 0x0000
+                          Bugfix: wrong Sync0/1 polarity when gap between disabling and re-enabling of CyclicUnit smaller than pulse width of Sync0/1
+                          Bugfix: Mailbox SyncManager is disabled on conflicting PD SyncManager changes
+                          Bugfix: DC StartTime CyclicOp (0x990..0x993) corrupted if read before activation of cyclic unit (0x981.0 = 1)
+1.7.0.1  AO    24.04.2015 Changed: Build to 21
+                          Added: UDP-CRC set to 0x0000 in processing and forwarding direction
+                          Added in ESI: <Mailbox DataLinkLayer="true">
+                          Added within HAL Example: if DIP switch (ID-selector) set to zero then Configured Station Alias register (0x12) set to netX specific value (e.g. netX100/500: 500, netX50: 50, ...) 
+                         

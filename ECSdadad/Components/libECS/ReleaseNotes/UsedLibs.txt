@@ -1,0 +1,59 @@
+
+Used Libraries
+============================================================================
+
+arm-hitex-elf/4.0.3/rcX_V2.0
+----------------------------
+libc_module.a                           rcX libc Module interface library V2.0.8.24
+libecs_netx100.a                        ECS Base library V4.4.0.2
+libecs_netx50.a                         ECS Base library V4.4.0.2
+libecsaoe.a                             ECS AoE library V4.4.0.2
+libecsap_netx100.a                      ECS AP library V4.4.0.2
+libecsap_netx100_ltd.a                  ECS AP library V4.4.0.2
+libecsap_netx50.a                       ECS AP library V4.4.0.2
+libecsap_netx50_ltd.a                   ECS AP library V4.4.0.2
+libecsbase.a                            ECS Base library V4.4.0.2
+libecsbase_ltd.a                        ECS Base library V4.4.0.2
+libecscoe.a                             ECS CoE library V4.4.0.2
+libecseoe.a                             ECS EoE library V4.4.0.2
+libecsfoe.a                             ECS FoE library V4.4.0.2
+libethintfap.a                          Ethernet Interface library for rcX V2.0 V4.0.1.0
+libmarshaller.a                         netX MarshallerV2.0.14.6
+libnxio_ecsV4_netx50.a                  NXIO 50 Ap Task library for netX50 V1.0.0.0
+libodv3.a                               ODV3 library V3.3.5.0
+librcx.a                                rcX Kernel library V2.0.8.24
+librcx_hif_cifx.a                       rcX Shared Memory API library V2.0.8.24
+librcx_mid.a                            rcX Middleware library V2.0.8.24
+librcx_module.a                         rcX Module interface library V2.0.8.24
+librcx_netx100.a                        rcX netX100/500 driver library V2.0.8.24
+librcx_netx100_hif.a                    rcX netX100/500 HIF driver library V2.0.8.24
+librcx_netx50.a                         rcX netX50 driver library V2.0.8.24
+librcx_netx50_hif.a                     rcX netX50 HIF driver library V2.0.8.24
+librcx_vol.a                            rcX Volume library V2.0.8.24
+
+arm-none-eabi/4.5.2/rcX_V2.1
+----------------------------
+libddp_netx51.a                         Unknown version
+libecs_netx100.a                        ECS Base library V4.4.0.2
+libecs_netx50.a                         ECS Base library V4.4.0.2
+libecs_netx51.a                         ECS Base library V4.4.0.2
+libecsaoe.a                             ECS AoE library V4.4.0.2
+libecsap_netx100.a                      ECS AP library V4.4.0.2
+libecsap_netx100_ltd.a                  ECS AP library V4.4.0.2
+libecsap_netx50.a                       ECS AP library V4.4.0.2
+libecsap_netx50_ltd.a                   ECS AP library V4.4.0.2
+libecsap_netx51.a                       ECS AP library V4.4.0.2
+libecsap_netx51_ltd.a                   ECS AP library V4.4.0.2
+libecsbase.a                            ECS Base library V4.4.0.2
+libecsbase_ltd.a                        ECS Base library V4.4.0.2
+libecscoe.a                             ECS CoE library V4.4.0.2
+libecseoe.a                             ECS EoE library V4.4.0.2
+libecsfoe.a                             ECS FoE library V4.4.0.2
+libethintfap.a                          Ethernet Interface library for rcX V2.1 V4.0.1.0
+libmarshaller.a                         netX MarshallerV2.0.14.6
+libodv3.a                               ODV3 library V3.3.5.0
+librcx.a                                rcX Kernel library V2.1.10.0
+librcx_mid.a                            rcX Middleware library V2.1.10.0
+librcx_netx51.a                         rcX netX51/52 driver library V2.1.10.0
+librcx_netx51_hif.a                     rcX netX51/52 HIF driver library V2.1.10.0
+librcx_vol.a                            rcX Volume library V2.1.10.0

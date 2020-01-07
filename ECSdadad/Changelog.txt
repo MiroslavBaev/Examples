@@ -1,0 +1,5 @@
+---  V1.3.0.4   EtherCAT LOM Example  -------------------------------------------------
+- Moving content of FirmwareInfo to depending target
+
+---  V1.3.0.2   EtherCAT LOM Example  -------------------------------------------------
+First released version, therefore no changes
