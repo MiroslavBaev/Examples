@@ -1,2 +1,0 @@
-version = 0x1060b00
-tools = [{'tool': 'c', 'tooldir': None, 'funs': None}, {'tool': 'cxx', 'tooldir': None, 'funs': None}, {'tool': 'hilscher_netx', 'tooldir': None, 'funs': None}, {'tool': 'hilscher_libsused', 'tooldir': ['..\\..\\..\\..\\..\\..\\BuildTools\\waf\\waflib\\extras'], 'funs': None}, {'tool': 'hilscher_firmware', 'tooldir': None, 'funs': None}, {'tool': 'hilscher_extras', 'tooldir': None, 'funs': None}, {'tool': 'hilscher_extensions', 'tooldir': None, 'funs': None}]
